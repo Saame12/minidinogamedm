@@ -5007,11 +5007,12 @@ public class TUIDataServer
 				CIAPInfo iAPInfo = gameData3.GetIAPInfo(wParam);
 				if (iAPInfo != null)
 				{
-					iServerSaveData.GetInstance().IsBackgroundUpload = false;
-					iServerSaveData.GetInstance().IsBackgroundBack = false;
+					iServerSaveData.GetInstance().IsBackgroundUpload = true;
+					iServerSaveData.GetInstance().IsBackgroundBack = true;
 					iServerSaveData.GetInstance().IsBackgroundRelogin = false;
-					iIAPManager.GetInstance().StartGooglePurchase(iAPInfo.sKey, OnPurchaseIAPSuccess, OnPurchaseIAPFailed, OnPurchaseIAPCancel, OnPurchaseIAPFailed);
-					global::EventCenter.EventCenter.Instance.Publish(this, new TUIEvent.BackEvent_SceneIAP(m_event.GetEventName()));
+					global::EventCenter.EventCenter.Instance.Publish(this, new TUIEvent.BackEvent_SceneIAP(TUIEvent.SceneIAPEventType.TUIEvent_IAPResult, true));
+					iGameApp.GetInstance().OnPurchaseIAP(iAPInfo.sKey, "demo-" + iAPInfo.nID, "free-pack");
+					OnIAPVerifySuccess(iAPInfo.sKey, "demo-" + iAPInfo.nID, "free-pack");
 				}
 			}
 		}

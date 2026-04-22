@@ -31,17 +31,16 @@ public class IAPItem : MonoBehaviour
 			Debug.Log("error!");
 		}
 		id = m_info.id;
-		float money_cost = m_info.money_cost;
 		TUIPriceInfo tUIPriceInfo = m_info.money_get;
 		int free_count = m_info.free_count;
 		string money_texture = m_info.money_texture;
 		if (label_button01 != null)
 		{
-			label_button01.Text = "$" + money_cost;
+			label_button01.Text = "FREE";
 		}
 		if (label_button02 != null)
 		{
-			label_button02.Text = "$" + money_cost;
+			label_button02.Text = "CLAIM";
 		}
 		if (money_get != null)
 		{
